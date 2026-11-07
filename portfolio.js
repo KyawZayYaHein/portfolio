@@ -18,10 +18,12 @@
       return;
     }
 
-    // Trigger sequential entrance on window load or next frame
-    requestAnimationFrame(() => {
-      document.body.classList.add('is-loaded');
-    });
+    // Allow layout pass to complete so the editorial entrance sequence is fully visible
+    setTimeout(() => {
+      requestAnimationFrame(() => {
+        document.body.classList.add('is-loaded');
+      });
+    }, 40);
   }
 
   /* ============================================================
@@ -83,10 +85,10 @@
      3. SCROLL REVEAL OBSERVER
      ============================================================ */
   function initScrollReveal() {
-    const revealElements = document.querySelectorAll('.reveal');
+    const targets = document.querySelectorAll('.reveal, .reveal-head, .reveal-stagger');
 
     if (prefersReduced || !('IntersectionObserver' in window)) {
-      revealElements.forEach((el) => el.classList.add('in'));
+      targets.forEach((el) => el.classList.add('in'));
       return;
     }
 
@@ -101,12 +103,12 @@
         });
       },
       {
-        threshold: 0.12,
+        threshold: 0.14,
         rootMargin: '0px 0px -40px 0px'
       }
     );
 
-    revealElements.forEach((el) => observer.observe(el));
+    targets.forEach((el) => observer.observe(el));
   }
 
   /* ============================================================
@@ -429,6 +431,106 @@
   }
 
   /* ============================================================
+     7. MINIMAL DESKTOP-ONLY CUSTOM CURSOR SYSTEM
+     ============================================================ */
+  function initCustomCursor() {
+    // Strictly disable on touch screens, small viewports, or reduced motion
+    if (prefersReduced || window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 900) {
+      return;
+    }
+
+    const cursorContainer = document.querySelector('.custom-cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorRing = document.querySelector('.cursor-ring');
+    const cursorLabel = document.querySelector('.cursor-label');
+
+    if (!cursorContainer || !cursorDot || !cursorRing || !cursorLabel) return;
+
+    let mouseX = -100;
+    let mouseY = -100;
+    let ringX = -100;
+    let ringY = -100;
+    let isMoving = false;
+    let isVisible = false;
+    let rafId = null;
+
+    function renderRing() {
+      const dx = mouseX - ringX;
+      const dy = mouseY - ringY;
+      ringX += dx * 0.22;
+      ringY += dy * 0.22;
+
+      cursorRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+
+      // Sleep loop if ring has smoothly converged on mouse position
+      if (Math.abs(dx) > 0.15 || Math.abs(dy) > 0.15) {
+        rafId = requestAnimationFrame(renderRing);
+      } else {
+        isMoving = false;
+        rafId = null;
+      }
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+
+      if (!isVisible) {
+        cursorContainer.style.opacity = '1';
+        ringX = mouseX;
+        ringY = mouseY;
+        cursorRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+        isVisible = true;
+      }
+
+      if (!isMoving) {
+        isMoving = true;
+        rafId = requestAnimationFrame(renderRing);
+      }
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', () => {
+      cursorContainer.style.opacity = '0';
+      isVisible = false;
+    });
+
+    document.addEventListener('mouseenter', () => {
+      cursorContainer.style.opacity = '1';
+      isVisible = true;
+    });
+
+    // Contextual Hover States & Labels via Event Delegation
+    document.addEventListener('mouseover', (e) => {
+      const labeledTarget = e.target.closest('[data-cursor]');
+      const clickableTarget = e.target.closest('a, button, .tag, .bagan-mode-tab, .engine-select, .bagan-node');
+
+      if (labeledTarget) {
+        const mode = labeledTarget.dataset.cursor;
+        cursorContainer.classList.add('cursor-labeled');
+        cursorContainer.classList.remove('cursor-hover');
+        if (mode === 'view') {
+          cursorLabel.textContent = 'View';
+        } else if (mode === 'explore') {
+          cursorLabel.textContent = 'Explore';
+        } else if (mode === 'route') {
+          cursorLabel.textContent = 'Route';
+        } else {
+          cursorLabel.textContent = mode.toUpperCase();
+        }
+      } else if (clickableTarget) {
+        cursorContainer.classList.add('cursor-hover');
+        cursorContainer.classList.remove('cursor-labeled');
+        cursorLabel.textContent = '';
+      } else {
+        cursorContainer.classList.remove('cursor-hover', 'cursor-labeled');
+        cursorLabel.textContent = '';
+      }
+    }, { passive: true });
+  }
+
+  /* ============================================================
      INITIALIZATION
      ============================================================ */
   document.addEventListener('DOMContentLoaded', () => {
@@ -438,5 +540,6 @@
     initBaganeticVisualizer();
     initThemeToggle();
     initMicroInteractions();
+    initCustomCursor();
   });
 })();

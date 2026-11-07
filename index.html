@@ -33,6 +33,14 @@
 </head>
 <body>
 
+  <!-- Desktop Custom Cursor -->
+  <div class="custom-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring">
+      <span class="cursor-label"></span>
+    </div>
+  </div>
+
   <header class="nav">
     <div class="wrap nav-inner">
       <a class="nav-logo" href="#top">Kyaw<span>.</span></a>
@@ -61,7 +69,10 @@
           <div class="hero-badge-wrap">
             <span class="hero-badge">✦ Final-Year CSE at MIIT · Open to remote &amp; in-person roles</span>
           </div>
-          <h1>I turn product ideas<br />into <em>working software</em>.</h1>
+          <h1 class="hero-headline">
+            <span class="hero-line"><span class="hero-line-inner">I turn product ideas</span></span>
+            <span class="hero-line"><span class="hero-line-inner">into <em class="gradient-text">working software</em>.</span></span>
+          </h1>
           <p class="hero-sub">
             Hi, I'm <strong>Kyaw Zay Ya Hein</strong> — a software engineer and UI/UX designer
             building C# / .NET backend architectures, full-stack web, and Flutter applications.
@@ -86,28 +97,28 @@
 
     <!-- Proof at a glance -->
     <section class="proof wrap" aria-label="Portfolio highlights">
-      <div class="proof-grid">
-        <div class="proof-item"><strong>152</strong><span>Automated tests passing in MatchGuard (.NET)</span></div>
-        <div class="proof-item"><strong>A</strong><span>Highest grade in cohort for web special project</span></div>
-        <div class="proof-item"><strong>50+</strong><span>UI/UX screens designed for Memoora</span></div>
-        <div class="proof-item"><strong>2nd</strong><span>Joint place in 1-month product hackathon</span></div>
+      <div class="proof-grid reveal-stagger">
+        <div class="proof-item reveal-child"><strong>152</strong><span>Automated tests passing in MatchGuard (.NET)</span></div>
+        <div class="proof-item reveal-child"><strong>A</strong><span>Highest grade in cohort for web special project</span></div>
+        <div class="proof-item reveal-child"><strong>50+</strong><span>UI/UX screens designed for Memoora</span></div>
+        <div class="proof-item reveal-child"><strong>2nd</strong><span>Joint place in 1-month product hackathon</span></div>
       </div>
     </section>
 
     <!-- What I do -->
     <section class="skills wrap" aria-label="What I do">
-      <div class="skills-grid">
-        <div class="skill-card reveal">
+      <div class="skills-grid reveal-stagger">
+        <div class="skill-card reveal-child">
           <div class="skill-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4a44c6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
           <h3>Backend &amp; Systems</h3>
           <p>C# 13, .NET 10, ASP.NET Core, EF Core, Node.js, and PostgreSQL/MongoDB. Modular monoliths, JWT rotation, and robust state machines.</p>
         </div>
-        <div class="skill-card reveal">
+        <div class="skill-card reveal-child">
           <div class="skill-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4a44c6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
           <h3>Flutter Mobile</h3>
           <p>Offline-first cross-platform apps with SQLite caching, Firebase Authentication, Cloud Firestore, on-device A* routing, and EN/MM localization.</p>
         </div>
-        <div class="skill-card reveal">
+        <div class="skill-card reveal-child">
           <div class="skill-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4a44c6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg></div>
           <h3>UI/UX &amp; Design Systems</h3>
           <p>Figma component libraries, typography scale, design tokens, interactive prototyping, user flows, and disciplined developer handoff.</p>
@@ -117,14 +128,14 @@
 
     <!-- Work -->
     <section id="work" class="work wrap">
-      <div class="section-head">
+      <div class="section-head reveal-head">
         <span class="section-eyebrow">Selected work</span>
         <h2>Selected work, with the proof behind it</h2>
         <p>From design systems to databases, secure architectures, and offline routing, each project shows what I owned and how it works.</p>
       </div>
 
       <!-- MatchGuard -->
-      <article class="case case-matchguard reveal">
+      <article class="case case-matchguard reveal" data-cursor="view">
         <div class="case-media">
           <img src="assets/matchguard/matchguard_home.jpg" alt="MatchGuard non-custodial verified-seller marketplace platform" loading="lazy" />
         </div>
@@ -152,7 +163,7 @@
       </article>
 
       <!-- Memoora -->
-      <article class="case case-memoora reveal">
+      <article class="case case-memoora reveal" data-cursor="view">
         <div class="case-media">
           <div class="phone-strip">
             <img src="assets/memoora/memoora_details.png" alt="Memoora dream-details screen with AI-generated symbols and analysis" loading="lazy" />
@@ -184,7 +195,7 @@
       </article>
 
       <!-- Baganetic Web -->
-      <article class="case case-baganetic reveal">
+      <article class="case case-baganetic reveal" data-cursor="view">
         <div class="case-media">
           <!-- View mode toggle: Screenshot vs Live Interactive A* Engine -->
           <div class="case-view-bar">
@@ -208,7 +219,7 @@
           <div id="bagan-view-engine" class="bagan-view-panel" style="display: none;">
             <div class="bagan-engine-container" id="baganetic-engine">
               <div class="engine-map-wrapper">
-                <svg id="bagan-svg-map" viewBox="0 0 310 240" xmlns="http://www.w3.org/2000/svg" aria-label="Interactive Bagan Pagoda Road Network Graph">
+                <svg id="bagan-svg-map" data-cursor="route" viewBox="0 0 310 240" xmlns="http://www.w3.org/2000/svg" aria-label="Interactive Bagan Pagoda Road Network Graph">
                   <defs>
                     <filter id="glow-gold" x="-20%" y="-20%" width="140%" height="140%">
                       <feGaussianBlur stdDeviation="3" result="blur" />
@@ -345,7 +356,7 @@
       </article>
 
       <!-- Baganetic Mobile -->
-      <article class="case case-mobile reveal">
+      <article class="case case-mobile reveal" data-cursor="view">
         <div class="case-media">
           <div class="mobile-strip">
             <img src="assets/mobile/baganetic_mobile_home.png" alt="Baganetic Mobile home screen showing popular pagodas" loading="lazy" />
@@ -379,13 +390,13 @@
 
     <!-- Additional engineering evidence -->
     <section class="other-work wrap" aria-labelledby="additional-work-title">
-      <div class="section-head">
+      <div class="section-head reveal-head">
         <span class="section-eyebrow">Additional work</span>
         <h2 id="additional-work-title">Practical systems &amp; data applications</h2>
       </div>
-      <div class="mini-case-list">
+      <div class="mini-case-list reveal-stagger">
         <!-- GeoAlert AI -->
-        <article class="mini-case reveal">
+        <article class="mini-case reveal-child" data-cursor="explore">
           <div class="mini-case-mark geo" aria-hidden="true">GEO</div>
           <div>
             <p class="case-role">Python · Streamlit · Pandas · PyDeck</p>
@@ -398,7 +409,7 @@
         </article>
 
         <!-- Retail POS -->
-        <article class="mini-case reveal">
+        <article class="mini-case reveal-child" data-cursor="explore">
           <div class="mini-case-mark" aria-hidden="true">POS</div>
           <div>
             <p class="case-role">Django · SQLite · Server-rendered web app</p>
@@ -414,28 +425,28 @@
 
     <!-- Recognition & Credentials -->
     <section class="recognition wrap" aria-label="Recognition &amp; Credentials">
-      <div class="section-head">
+      <div class="section-head reveal-head">
         <span class="section-eyebrow">Milestones</span>
         <h2>Recognition &amp; Credentials</h2>
         <p>Verified honors, leadership roles, and technical training.</p>
       </div>
-      <div class="recognition-grid">
-        <div class="recognition-card reveal">
+      <div class="recognition-grid reveal-stagger">
+        <div class="recognition-card reveal-child">
           <span class="recognition-meta">Leadership · June – August 2026</span>
           <h4>KBZPay Student Ambassador</h4>
           <p>Selected for Batch 17 to represent KBZPay on campus; completed sessions on fintech adoption, financial literacy, and technical communication.</p>
         </div>
-        <div class="recognition-card reveal">
+        <div class="recognition-card reveal-child">
           <span class="recognition-meta">Certification · July 2026</span>
           <h4>Data Engineering Level-1</h4>
           <p>Scholarship recipient at Realistic Infotech Group; completed hands-on training in relational schema design, data pipelines, and SQL optimization.</p>
         </div>
-        <div class="recognition-card reveal">
+        <div class="recognition-card reveal-child">
           <span class="recognition-meta">Training · July 2026</span>
           <h4>Next Gen Digital Mastery</h4>
           <p>Jefferson Center / Strategy First International College enablement in digital strategy, product management, and modern tech workflows.</p>
         </div>
-        <div class="recognition-card reveal">
+        <div class="recognition-card reveal-child">
           <span class="recognition-meta">Program · 2026</span>
           <h4>ASEAN Data Science Explorers</h4>
           <p>Enablement session on SAP Analytics Cloud, data analytics modeling, and data-driven problem solving.</p>
@@ -446,21 +457,21 @@
     <!-- Process -->
     <section id="process" class="process">
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head reveal-head">
           <span class="section-eyebrow">How I work</span>
           <h2>One person across product and code</h2>
           <p>I connect user needs, interface decisions, and the technical work required to make a product usable.</p>
         </div>
-        <div class="process-grid">
-          <div class="process-step reveal">
+        <div class="process-grid reveal-stagger">
+          <div class="process-step reveal-child">
             <h3>Design</h3>
             <p>User flows, wireframes, and high-fidelity Figma prototypes built on real design systems — tokens, components, and states.</p>
           </div>
-          <div class="process-step reveal">
+          <div class="process-step reveal-child">
             <h3>Build</h3>
             <p>The same person who designed it writes the code — so spacing, motion, and edge cases survive the translation.</p>
           </div>
-          <div class="process-step reveal">
+          <div class="process-step reveal-child">
             <h3>Validate</h3>
             <p>I test real user flows and edge cases — especially auth, data, offline support, and the details that make a product dependable.</p>
           </div>
@@ -510,31 +521,6 @@
     <div class="wrap">© 2026 Kyaw Zay Ya Hein · Designed &amp; built by me (naturally)</div>
   </footer>
 
-  <script>
-    // Soft scroll-reveal, skipped for reduced-motion users
-    const prefersReduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const els = document.querySelectorAll(".reveal");
-    if (prefersReduced || !("IntersectionObserver" in window)) {
-      els.forEach(el => el.classList.add("in"));
-    } else {
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-      }, { threshold: 0.15 });
-      els.forEach(el => io.observe(el));
-    }
-    // Theme toggle button logic
-    const toggleBtn = document.getElementById('theme-toggle');
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = currentTheme === 'dark' || (!currentTheme && systemPrefersDark);
-        const nextTheme = isDark ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', nextTheme);
-        localStorage.setItem('theme', nextTheme);
-      });
-    }
-  </script>
   <script defer src="portfolio.js"></script>
 </body>
 </html>
