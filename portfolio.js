@@ -442,9 +442,8 @@
     const cursorContainer = document.querySelector('.custom-cursor');
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorRing = document.querySelector('.cursor-ring');
-    const cursorLabel = document.querySelector('.cursor-label');
 
-    if (!cursorContainer || !cursorDot || !cursorRing || !cursorLabel) return;
+    if (!cursorContainer || !cursorDot || !cursorRing) return;
 
     // Enable CSS cursor hiding on canvas/links only once JS confirms custom cursor is active
     document.documentElement.classList.add('has-custom-cursor');
@@ -477,45 +476,26 @@
     function updateCursorState(target) {
       if (!target) return;
 
-      // 1. Priority 1: Clickable Interactive Elements
-      const clickable = target.closest('a, button, .tag, .bagan-mode-tab, .engine-select, .bagan-node, .btn, .hero-card-chip');
-      if (clickable) {
+      // 1. Interactive Elements (expand to magnetic halo ring)
+      const interactive = target.closest(
+        'a, button, .btn, .tag, .bagan-mode-tab, .engine-select, .bagan-node, .hero-card-chip, .case-media, .theme-toggle'
+      );
+      if (interactive) {
         cursorContainer.classList.add('cursor-hover');
-        cursorContainer.classList.remove('cursor-labeled', 'cursor-text');
-        cursorLabel.textContent = '';
+        cursorContainer.classList.remove('cursor-text');
         return;
       }
 
-      // 2. Priority 2: Contextual Preview Elements (project media, maps, demo marks)
-      const labeled = target.closest('[data-cursor]');
-      if (labeled) {
-        const mode = labeled.dataset.cursor;
-        cursorContainer.classList.add('cursor-labeled');
-        cursorContainer.classList.remove('cursor-hover', 'cursor-text');
-        if (mode === 'view') {
-          cursorLabel.textContent = 'View';
-        } else if (mode === 'explore') {
-          cursorLabel.textContent = 'Explore';
-        } else if (mode === 'route') {
-          cursorLabel.textContent = 'Route';
-        } else {
-          cursorLabel.textContent = mode.toUpperCase();
-        }
-        return;
-      }
-
-      // 3. Priority 3: Readable Text Content (dim outer ring so reading & selecting text is natural)
+      // 2. Readable Text Content (dim outer ring so reading & selecting text is natural)
       const textElem = target.closest('p, h1, h2, h3, h4, li, .hero-sub, .case-desc, .metric-value, input, textarea');
       if (textElem) {
         cursorContainer.classList.add('cursor-text');
-        cursorContainer.classList.remove('cursor-hover', 'cursor-labeled');
-        cursorLabel.textContent = '';
+        cursorContainer.classList.remove('cursor-hover');
         return;
       }
 
-      // 4. Default Neutral Canvas
-      cursorContainer.classList.remove('cursor-hover', 'cursor-labeled', 'cursor-text');
-      cursorLabel.textContent = '';
+      // 3. Default Neutral Canvas
+      cursorContainer.classList.remove('cursor-hover', 'cursor-text');
     }
 
     window.addEventListener('mousemove', (e) => {
@@ -551,7 +531,6 @@
       isVisible = true;
     });
 
-    // Contextual Hover States & Labels via Event Delegation
     document.addEventListener('mouseover', (e) => {
       updateCursorState(e.target);
     }, { passive: true });
