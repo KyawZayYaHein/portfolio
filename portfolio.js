@@ -446,6 +446,9 @@
 
     if (!cursorContainer || !cursorDot || !cursorRing || !cursorLabel) return;
 
+    // Enable CSS cursor hiding on canvas/links only once JS confirms custom cursor is active
+    document.documentElement.classList.add('has-custom-cursor');
+
     let mouseX = -100;
     let mouseY = -100;
     let ringX = -100;
@@ -471,10 +474,55 @@
       }
     }
 
+    function updateCursorState(target) {
+      if (!target) return;
+
+      // 1. Priority 1: Clickable Interactive Elements
+      const clickable = target.closest('a, button, .tag, .bagan-mode-tab, .engine-select, .bagan-node, .btn, .hero-card-chip');
+      if (clickable) {
+        cursorContainer.classList.add('cursor-hover');
+        cursorContainer.classList.remove('cursor-labeled', 'cursor-text');
+        cursorLabel.textContent = '';
+        return;
+      }
+
+      // 2. Priority 2: Contextual Preview Elements (project media, maps, demo marks)
+      const labeled = target.closest('[data-cursor]');
+      if (labeled) {
+        const mode = labeled.dataset.cursor;
+        cursorContainer.classList.add('cursor-labeled');
+        cursorContainer.classList.remove('cursor-hover', 'cursor-text');
+        if (mode === 'view') {
+          cursorLabel.textContent = 'View';
+        } else if (mode === 'explore') {
+          cursorLabel.textContent = 'Explore';
+        } else if (mode === 'route') {
+          cursorLabel.textContent = 'Route';
+        } else {
+          cursorLabel.textContent = mode.toUpperCase();
+        }
+        return;
+      }
+
+      // 3. Priority 3: Readable Text Content (dim outer ring so reading & selecting text is natural)
+      const textElem = target.closest('p, h1, h2, h3, h4, li, .hero-sub, .case-desc, .metric-value, input, textarea');
+      if (textElem) {
+        cursorContainer.classList.add('cursor-text');
+        cursorContainer.classList.remove('cursor-hover', 'cursor-labeled');
+        cursorLabel.textContent = '';
+        return;
+      }
+
+      // 4. Default Neutral Canvas
+      cursorContainer.classList.remove('cursor-hover', 'cursor-labeled', 'cursor-text');
+      cursorLabel.textContent = '';
+    }
+
     window.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
 
+      // Hardware sync: 0ms delay for center pointer dot
       cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
 
       if (!isVisible) {
@@ -484,6 +532,8 @@
         cursorRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
         isVisible = true;
       }
+
+      updateCursorState(e.target);
 
       if (!isMoving) {
         isMoving = true;
@@ -503,30 +553,7 @@
 
     // Contextual Hover States & Labels via Event Delegation
     document.addEventListener('mouseover', (e) => {
-      const labeledTarget = e.target.closest('[data-cursor]');
-      const clickableTarget = e.target.closest('a, button, .tag, .bagan-mode-tab, .engine-select, .bagan-node');
-
-      if (labeledTarget) {
-        const mode = labeledTarget.dataset.cursor;
-        cursorContainer.classList.add('cursor-labeled');
-        cursorContainer.classList.remove('cursor-hover');
-        if (mode === 'view') {
-          cursorLabel.textContent = 'View';
-        } else if (mode === 'explore') {
-          cursorLabel.textContent = 'Explore';
-        } else if (mode === 'route') {
-          cursorLabel.textContent = 'Route';
-        } else {
-          cursorLabel.textContent = mode.toUpperCase();
-        }
-      } else if (clickableTarget) {
-        cursorContainer.classList.add('cursor-hover');
-        cursorContainer.classList.remove('cursor-labeled');
-        cursorLabel.textContent = '';
-      } else {
-        cursorContainer.classList.remove('cursor-hover', 'cursor-labeled');
-        cursorLabel.textContent = '';
-      }
+      updateCursorState(e.target);
     }, { passive: true });
   }
 

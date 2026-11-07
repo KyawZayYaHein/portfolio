@@ -1298,6 +1298,31 @@ body.is-loaded .hero-card-img {
 }
 
 /* ---------- Desktop Custom Cursor System ---------- */
+@media (pointer: fine) and (min-width: 901px) {
+  html.has-custom-cursor,
+  html.has-custom-cursor body,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button,
+  html.has-custom-cursor .case-media,
+  html.has-custom-cursor .bagan-node,
+  html.has-custom-cursor #bagan-svg-map {
+    cursor: none !important;
+  }
+
+  /* Preserve native text selection cursor */
+  html.has-custom-cursor p,
+  html.has-custom-cursor h1,
+  html.has-custom-cursor h2,
+  html.has-custom-cursor h3,
+  html.has-custom-cursor h4,
+  html.has-custom-cursor li,
+  html.has-custom-cursor input,
+  html.has-custom-cursor textarea,
+  html.has-custom-cursor select {
+    cursor: auto !important;
+  }
+}
+
 .custom-cursor {
   position: fixed;
   top: 0;
@@ -1305,8 +1330,10 @@ body.is-loaded .hero-card-img {
   width: 0;
   height: 0;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 99999;
   display: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
 @media (pointer: fine) and (min-width: 901px) {
@@ -1315,26 +1342,32 @@ body.is-loaded .hero-card-img {
   }
 }
 
+/* Center Dot: 0ms transform lag (instant synchronization with mouse pointer) */
 .cursor-dot {
   position: fixed;
-  top: -3px;
-  left: -3px;
+  top: 0;
+  left: 0;
   width: 6px;
   height: 6px;
+  margin-top: -3px;
+  margin-left: -3px;
   background-color: var(--purple-700);
   border-radius: 50%;
   pointer-events: none;
-  transition: transform 0.12s ease-out, opacity 0.2s ease, background-color 0.2s ease;
-  z-index: 10000;
+  transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+  z-index: 100000;
   will-change: transform;
 }
 
+/* Outer Ring: Smooth Spring Lerp Tracking */
 .cursor-ring {
   position: fixed;
-  top: -18px;
-  left: -18px;
-  width: 36px;
-  height: 36px;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  margin-top: -17px;
+  margin-left: -17px;
   border: 1.5px solid rgba(74, 68, 198, 0.45);
   background: rgba(142, 137, 246, 0.04);
   border-radius: 50%;
@@ -1343,53 +1376,54 @@ body.is-loaded .hero-card-img {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  transition: width 0.26s var(--ease-out-expo),
-              height 0.26s var(--ease-out-expo),
-              top 0.26s var(--ease-out-expo),
-              left 0.26s var(--ease-out-expo),
-              border-color 0.22s ease,
-              background-color 0.22s ease,
-              opacity 0.22s ease;
-  will-change: transform, width, height;
+  transition: width 0.24s var(--ease-out-expo),
+              height 0.24s var(--ease-out-expo),
+              margin 0.24s var(--ease-out-expo),
+              border-color 0.2s ease,
+              background-color 0.2s ease,
+              opacity 0.2s ease;
+  will-change: transform;
 }
 
 .cursor-label {
   font-family: var(--font-body);
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #ffffff;
   opacity: 0;
   transform: scale(0.7);
   transition: opacity 0.2s ease, transform 0.2s ease;
   pointer-events: none;
+  user-select: none;
 }
 
-/* Cursor Interactive States */
+/* State 1: Clickable Interactive Elements */
 .cursor-hover .cursor-dot {
-  transform: scale(0.6);
-  opacity: 0.5;
+  transform: scale(0.5);
+  opacity: 0.6;
 }
 
 .cursor-hover .cursor-ring {
-  top: -24px;
-  left: -24px;
   width: 48px;
   height: 48px;
+  margin-top: -24px;
+  margin-left: -24px;
   border-color: rgba(74, 68, 198, 0.85);
-  background: rgba(74, 68, 198, 0.08);
+  background: rgba(74, 68, 198, 0.1);
 }
 
+/* State 2: Contextual Labeled Previews */
 .cursor-labeled .cursor-dot {
   opacity: 0;
 }
 
 .cursor-labeled .cursor-ring {
-  top: -34px;
-  left: -34px;
-  width: 68px;
-  height: 68px;
+  width: 66px;
+  height: 66px;
+  margin-top: -33px;
+  margin-left: -33px;
   border-color: var(--purple-600);
   background: rgba(74, 68, 198, 0.92);
   backdrop-filter: blur(8px);
@@ -1400,6 +1434,19 @@ body.is-loaded .hero-card-img {
 .cursor-labeled .cursor-label {
   opacity: 1;
   transform: scale(1);
+}
+
+/* State 3: Over Text Content (fade outer ring, subtle dot) */
+.cursor-text .cursor-ring {
+  opacity: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: -9px;
+  margin-left: -9px;
+}
+.cursor-text .cursor-dot {
+  opacity: 0.35;
+  transform: scale(0.7);
 }
 
 /* Dark Mode Cursor Adjustments */
