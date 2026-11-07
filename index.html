@@ -186,7 +186,140 @@
       <!-- Baganetic Web -->
       <article class="case case-baganetic reveal">
         <div class="case-media">
-          <img src="assets/baganetic/web_home.jpg" alt="Baganetic web app landing page over a misty Bagan temple landscape" loading="lazy" />
+          <!-- View mode toggle: Screenshot vs Live Interactive A* Engine -->
+          <div class="case-view-bar">
+            <span class="case-view-label">Baganetic Showcase</span>
+            <div class="bagan-tabs" role="tablist" aria-label="Baganetic View Mode">
+              <button class="bagan-mode-tab active" data-mode="preview" type="button" role="tab" aria-selected="true" title="View app interface screenshot">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                App Interface
+              </button>
+              <button class="bagan-mode-tab" data-mode="engine" type="button" role="tab" aria-selected="false" title="Launch live interactive A* routing simulation">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                Interactive A* Engine
+              </button>
+            </div>
+          </div>
+
+          <div id="bagan-view-preview" class="bagan-view-panel">
+            <img src="assets/baganetic/web_home.jpg" alt="Baganetic web app landing page over a misty Bagan temple landscape" loading="lazy" />
+          </div>
+
+          <div id="bagan-view-engine" class="bagan-view-panel" style="display: none;">
+            <div class="bagan-engine-container" id="baganetic-engine">
+              <div class="engine-map-wrapper">
+                <svg id="bagan-svg-map" viewBox="0 0 310 240" xmlns="http://www.w3.org/2000/svg" aria-label="Interactive Bagan Pagoda Road Network Graph">
+                  <defs>
+                    <filter id="glow-gold" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="3" result="blur" />
+                      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                  </defs>
+                  
+                  <!-- Road Network Background Lines -->
+                  <g class="bagan-roads">
+                    <line class="bagan-edge" data-edge="gawdawpalin-thatbyinnyu" x1="30" y1="80" x2="80" y2="130" />
+                    <line class="bagan-edge" data-edge="thatbyinnyu-ananda" x1="80" y1="130" x2="155" y2="70" />
+                    <line class="bagan-edge" data-edge="ananda-sulamani" x1="155" y1="70" x2="280" y2="100" />
+                    <line class="bagan-edge" data-edge="thatbyinnyu-shwesandaw" x1="80" y1="130" x2="110" y2="205" />
+                    <line class="bagan-edge" data-edge="ananda-dhammayangyi" x1="155" y1="70" x2="235" y2="170" />
+                    <line class="bagan-edge" data-edge="shwesandaw-dhammayangyi" x1="110" y1="205" x2="235" y2="170" />
+                    <line class="bagan-edge" data-edge="dhammayangyi-sulamani" x1="235" y1="170" x2="280" y2="100" />
+                  </g>
+
+                  <!-- Pagoda Graph Nodes -->
+                  <g class="bagan-nodes">
+                    <!-- Gawdawpalin -->
+                    <g class="bagan-node" data-node-id="gawdawpalin" transform="translate(30, 80)">
+                      <circle class="node-ring" r="14" />
+                      <circle class="node-core" r="7" />
+                      <text class="node-label" y="24">Gawdawpalin</text>
+                    </g>
+                    <!-- Thatbyinnyu -->
+                    <g class="bagan-node" data-node-id="thatbyinnyu" transform="translate(80, 130)">
+                      <circle class="node-ring" r="14" />
+                      <circle class="node-core" r="7" />
+                      <text class="node-label" y="-12">Thatbyinnyu</text>
+                    </g>
+                    <!-- Ananda (Origin default) -->
+                    <g class="bagan-node is-start" data-node-id="ananda" transform="translate(155, 70)">
+                      <circle class="node-ring" r="14" />
+                      <circle class="node-core" r="7" />
+                      <text class="node-label" y="-12">Ananda Temple</text>
+                    </g>
+                    <!-- Shwesandaw -->
+                    <g class="bagan-node" data-node-id="shwesandaw" transform="translate(110, 205)">
+                      <circle class="node-ring" r="14" />
+                      <circle class="node-core" r="7" />
+                      <text class="node-label" y="22">Shwesandaw</text>
+                    </g>
+                    <!-- Dhammayangyi (Destination default) -->
+                    <g class="bagan-node is-goal" data-node-id="dhammayangyi" transform="translate(235, 170)">
+                      <circle class="node-ring" r="14" />
+                      <circle class="node-core" r="7" />
+                      <text class="node-label" y="24">Dhammayangyi</text>
+                    </g>
+                    <!-- Sulamani -->
+                    <g class="bagan-node" data-node-id="sulamani" transform="translate(280, 100)">
+                      <circle class="node-ring" r="14" />
+                      <circle class="node-core" r="7" />
+                      <text class="node-label" y="-12">Sulamani</text>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+
+              <!-- Interactive Engine Controls & Live Algorithmic HUD -->
+              <div class="engine-hud">
+                <div class="engine-hud-header">
+                  <span class="engine-hud-tag">A* Shortest-Path Engine</span>
+                  <span class="engine-hud-status">● Live Graph Simulation</span>
+                </div>
+                
+                <div class="engine-selectors">
+                  <div class="selector-group">
+                    <label for="astar-start">Origin:</label>
+                    <select id="astar-start" class="engine-select">
+                      <option value="ananda" selected>Ananda Temple</option>
+                      <option value="thatbyinnyu">Thatbyinnyu</option>
+                      <option value="gawdawpalin">Gawdawpalin</option>
+                      <option value="shwesandaw">Shwesandaw</option>
+                      <option value="dhammayangyi">Dhammayangyi</option>
+                      <option value="sulamani">Sulamani</option>
+                    </select>
+                  </div>
+                  <div class="selector-arrow">→</div>
+                  <div class="selector-group">
+                    <label for="astar-goal">Destination:</label>
+                    <select id="astar-goal" class="engine-select">
+                      <option value="ananda">Ananda Temple</option>
+                      <option value="thatbyinnyu">Thatbyinnyu</option>
+                      <option value="gawdawpalin">Gawdawpalin</option>
+                      <option value="shwesandaw">Shwesandaw</option>
+                      <option value="dhammayangyi" selected>Dhammayangyi</option>
+                      <option value="sulamani">Sulamani</option>
+                    </select>
+                  </div>
+                  <button id="astar-run-btn" class="btn btn-primary btn-engine" type="button">Run A*</button>
+                </div>
+
+                <div class="engine-metrics-row">
+                  <div class="metric-box metric-path">
+                    <span class="metric-label">Computed Path</span>
+                    <span id="astar-res-path" class="metric-value">Ananda → Dhammayangyi</span>
+                  </div>
+                  <div class="metric-box metric-dist">
+                    <span class="metric-label">Road Distance</span>
+                    <span id="astar-res-dist" class="metric-value">1.50 km</span>
+                  </div>
+                  <div class="metric-box metric-eval">
+                    <span class="metric-label">Nodes Evaluated</span>
+                    <span id="astar-res-visited" class="metric-value">2 / 6</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="case-body">
           <span class="case-award">🎓 Highest grade (A) — university special project</span>
@@ -402,5 +535,6 @@
       });
     }
   </script>
+  <script defer src="portfolio.js"></script>
 </body>
 </html>
