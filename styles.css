@@ -199,8 +199,8 @@ a { color: var(--purple-700); }
 .hero-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.5em;
-  background: rgba(255, 255, 255, 0.8);
+  gap: 0.55em;
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(74, 68, 198, 0.18);
@@ -212,6 +212,12 @@ a { color: var(--purple-700); }
   padding: 0.45em 1.1em;
   border-radius: var(--r-pill);
 }
+.hero-badge .status-indicator {
+  width: 7px;
+  height: 7px;
+  margin-right: 2px;
+}
+.badge-text-mobile { display: none; }
 
 .hero h1 {
   font-size: clamp(2.2rem, 3.5vw, 3.3rem);
@@ -1531,47 +1537,83 @@ body.is-loaded .hero-card-img {
   .nav-links li:nth-child(2) { display: none; } /* Hide Process on mobile to give Work & Contact breathing room */
   .nav-links li:nth-child(n+4) { display: none; }
   
+  .badge-text-full { display: none; }
+  .badge-text-mobile { display: inline; }
+  
   .hero {
-    padding-top: var(--s-3);
-    padding-bottom: calc(var(--s-6) + var(--s-2));
+    padding-top: 14px;
+    padding-bottom: 28px;
   }
   .hero-grid {
-    gap: var(--s-3);
+    gap: 16px;
+  }
+  .hero-badge-wrap {
+    margin-bottom: 10px;
   }
   .hero-badge {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    line-height: 1.45;
-    font-size: 0.72rem;
-    padding: 0.4em 0.85em;
-    text-wrap: balance;
+    gap: 7px;
+    font-size: 0.70rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 5px 12px;
+    border-radius: var(--r-pill);
+    white-space: nowrap;
   }
-  .hero h1 { font-size: 2.15rem; line-height: 1.15; }
+  .hero h1 {
+    font-size: 1.95rem;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin-bottom: 8px;
+  }
   .hero-sub {
-    margin-bottom: var(--s-3);
+    font-size: 0.90rem;
+    line-height: 1.5;
+    margin-bottom: 14px;
     text-wrap: pretty;
   }
   .hero-ctas {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
-    max-width: 320px;
-    margin-inline: auto;
-    gap: var(--s-2);
+    max-width: 330px;
+    gap: 10px;
+    margin-inline: 0;
     margin-bottom: 0;
   }
   .hero-ctas .btn {
-    width: 100%;
-    min-height: 48px;
+    flex: 1;
+    width: auto;
+    min-height: 44px;
+    padding: 9px 12px;
+    font-size: 0.84rem;
+    white-space: nowrap;
     justify-content: center;
     text-align: center;
+    border-radius: var(--r-pill);
     font-weight: 600;
   }
+  .hero-visual {
+    margin-top: 4px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
   .hero-card {
-    max-width: 320px;
+    max-width: 275px;
     width: 100%;
     margin-inline: auto;
+    border-radius: 20px;
+  }
+  .hero-card-chip {
+    padding: 5px 10px;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+  }
+  .hero-card-chip .chip-text {
+    font-size: 0.70rem;
   }
   
   /* Harmonized section vertical rhythm on mobile to eliminate giant voids */
