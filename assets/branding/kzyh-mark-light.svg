@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 195" width="100%" height="100%" fill="none" role="img" aria-labelledby="kzLightTitle kzLightDesc">
+  <title id="kzLightTitle">Kyaw Zay Ya Hein — KZ Signature Mark</title>
+  <desc id="kzLightDesc">Angular KZ monogram crossed by an orbital ring with a cosmic star sparkle for light surfaces.</desc>
+  <defs>
+    <linearGradient id="kzTrueMetalLight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2A1B4E"/>
+      <stop offset="45%" stop-color="#5B38A8"/>
+      <stop offset="85%" stop-color="#4A44C6"/>
+      <stop offset="100%" stop-color="#362B6E"/>
+    </linearGradient>
+  </defs>
+  <!-- 1. Left Vertical Stem + Top Bar + Diagonal of Z -->
+  <path d="M 41.2 18.0 L 69.7 18.0 L 71.6 67.4 L 121.0 18.0 L 236.9 18.0 L 84.9 170.0 L 45.0 170.0 L 41.2 124.4 Z" fill="url(#kzTrueMetalLight)"/>
+  <!-- 2. Lower Leg of K -->
+  <path d="M 153.3 120.6 L 179.9 105.4 L 236.9 162.4 L 236.9 170.0 L 197.0 170.0 Z" fill="url(#kzTrueMetalLight)"/>
+  <!-- 3. Terminal Accent Notch -->
+  <path d="M 229.3 105.4 L 261.6 137.7 L 261.6 170.0 L 229.3 137.7 Z" fill="url(#kzTrueMetalLight)"/>
+  <!-- 4. Snug Orbital Ring -->
+  <ellipse cx="151.4" cy="105.4" rx="133.0" ry="53.2" transform="rotate(-24 151.4 105.4)"
+    fill="none" stroke="#7447C8" stroke-width="4.2" opacity="0.95"/>
+  <!-- 5. 4-Ray Celestial Star Flare -->
+  <path d="M271.1 15.3 L275.6 26.8 L287.1 31.3 L275.6 35.8 L271.1 47.3 L266.6 35.8 L255.10000000000002 31.3 L266.6 26.8 Z"
+    fill="#4A44C6"/>
+  <circle cx="271.1" cy="31.3" r="2.8" fill="#4A44C6"/>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 340" width="100%" height="100%" fill="none" role="img" aria-label="Kyaw Zay Ya Hein Full Signature Emblem">
+  <defs>
+    <linearGradient id="kzSigGrad_light" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2A1B4E"/>
+      <stop offset="42%" stop-color="#5B38A8"/>
+      <stop offset="82%" stop-color="#4A44C6"/>
+      <stop offset="100%" stop-color="#362B6E"/>
+    </linearGradient>
+    <filter id="kzSigGlow_light" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- 1. Left Vertical Component -->
+  <path d="M137 55 L187 55 L187 175 L137 225 Z" fill="url(#kzSigGrad_light)"/>
+  <!-- 2. Central Ribbon / Diagonal of Z -->
+  <path d="M133 105 L330 105 L173.5 245 L260 245 L400 105 L330 105 L133 105 Z" fill="url(#kzSigGrad_light)"/>
+  <!-- 3. Lower-Right Component -->
+  <path d="M199 170.6 L279 250.6 L349 250.6 L249 150.6 Z" fill="url(#kzSigGrad_light)"/>
+  <path d="M349 190.6 L349 250.6 L389 250.6 L389 230.6 Z" fill="url(#kzSigGrad_light)"/>
+  <!-- 4. Orbital Ellipse -->
+  <ellipse cx="260" cy="155" rx="175" ry="65" transform="rotate(-24 260 155)"
+    fill="none" stroke="#7447C8" stroke-width="4.2" opacity="0.95"/>
+  <!-- 5. 4-Ray Celestial Star Flare -->
+  <path d="M414 75 L419 88 L432 93 L419 98 L414 111 L409 98 L396 93 L409 88 Z"
+    fill="#4A44C6" filter="url(#kzSigGlow_light)"/>
+  <circle cx="414" cy="93" r="3" fill="#4A44C6"/>
+</svg>

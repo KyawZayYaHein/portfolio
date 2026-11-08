@@ -119,14 +119,102 @@ a { color: var(--purple-700); }
   padding-block: 0.9rem;
 }
 
+/* ---------- Navigation Logo & Brand Signature ---------- */
 .nav-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  user-select: none;
+  transition: transform var(--dur-quick) var(--ease-spring);
+}
+
+.nav-logo:hover {
+  transform: translateY(-1px);
+}
+
+.nav-brand-desktop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.nav-brand-mobile {
+  display: none;
+}
+
+.nav-mark-desktop {
+  width: 60px;
+  height: 36px;
+  flex-shrink: 0;
+  display: block;
+  overflow: visible;
+  transition: transform var(--dur-norm) var(--ease-spring), filter var(--dur-norm) var(--ease-out-expo);
+}
+
+.nav-mark-mobile {
+  width: 44px;
+  height: 34px;
+  display: block;
+  overflow: visible;
+}
+
+.nav-logo:hover .nav-mark-svg {
+  transform: scale(1.05);
+}
+
+.nav-logo-text {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
   color: var(--ink);
-  text-decoration: none;
+  line-height: 1;
 }
-.nav-logo span { color: var(--purple-700); }
+
+/* Light Theme: Rich royal violet brand identity with crisp contrast */
+.nav-logo #navMarkGrad .stop-1,
+.nav-logo #navMarkGradMobile .stop-1 { stop-color: #1b0e38; }
+.nav-logo #navMarkGrad .stop-2,
+.nav-logo #navMarkGradMobile .stop-2 { stop-color: #3e1e78; }
+.nav-logo #navMarkGrad .stop-3,
+.nav-logo #navMarkGradMobile .stop-3 { stop-color: #5833b0; }
+.nav-logo #navMarkGrad .stop-4,
+.nav-logo #navMarkGradMobile .stop-4 { stop-color: #4b2da6; }
+
+.nav-logo .kz-orbit {
+  stroke: #5833b0;
+  stroke-width: 10px;
+  opacity: 1;
+}
+.nav-logo .kz-star,
+.nav-logo .kz-star-core {
+  fill: #3e1e78;
+}
+
+/* Dark Theme: Luminous starlight & vivid lavender */
+html[data-theme="dark"] .nav-logo #navMarkGrad .stop-1,
+html[data-theme="dark"] .nav-logo #navMarkGradMobile .stop-1 { stop-color: #ffffff; }
+html[data-theme="dark"] .nav-logo #navMarkGrad .stop-2,
+html[data-theme="dark"] .nav-logo #navMarkGradMobile .stop-2 { stop-color: #f4ecff; }
+html[data-theme="dark"] .nav-logo #navMarkGrad .stop-3,
+html[data-theme="dark"] .nav-logo #navMarkGradMobile .stop-3 { stop-color: #d0b3ff; }
+html[data-theme="dark"] .nav-logo #navMarkGrad .stop-4,
+html[data-theme="dark"] .nav-logo #navMarkGradMobile .stop-4 { stop-color: #a879ff; }
+
+html[data-theme="dark"] .nav-logo .kz-orbit {
+  stroke: #d0b3ff;
+  stroke-width: 10px;
+  opacity: 1;
+  filter: drop-shadow(0 0 5px rgba(168, 121, 255, 0.7));
+}
+html[data-theme="dark"] .nav-logo .kz-star,
+html[data-theme="dark"] .nav-logo .kz-star-core {
+  fill: #ffffff;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.95));
+}
+html[data-theme="dark"] .nav-logo:hover .nav-mark-svg {
+  filter: drop-shadow(0 0 16px rgba(168, 121, 255, 0.85));
+}
 
 .nav-links {
   display: flex;
@@ -1530,6 +1618,23 @@ body.is-loaded .hero-card-img {
   .contact-detail-item .detail-label { text-align: left; flex-shrink: 0; }
   .contact-detail-item .detail-val { text-align: right; }
   .contact-ctas { justify-content: flex-start; }
+}
+
+/* Responsive Breakpoint for Brand Lockup (<= 680px) */
+@media (max-width: 680px) {
+  .nav-brand-desktop {
+    display: none !important;
+  }
+  .nav-brand-mobile {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-mark-mobile {
+    width: 44px;
+    height: 34px;
+    display: block !important;
+  }
 }
 
 @media (max-width: 560px) {
