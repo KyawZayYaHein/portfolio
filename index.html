@@ -22,7 +22,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="assets/branding/favicon-16x16.png?v=4" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/branding/apple-touch-icon.png?v=4" />
   <link rel="manifest" href="site.webmanifest?v=4" />
-  <meta name="theme-color" content="#0B0920" />
+  <meta name="theme-color" content="#0B0920" id="theme-color-meta" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,600&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet" />
@@ -30,9 +30,19 @@
   <link rel="stylesheet" href="styles.css" />
   <script>
     (function() {
-      const saved = localStorage.getItem('theme');
-      if (saved) {
-        document.documentElement.setAttribute('data-theme', saved);
+      try {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = saved || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.colorScheme = theme;
+        const metaTheme = document.getElementById('theme-color-meta');
+        if (metaTheme) {
+          metaTheme.setAttribute('content', theme === 'dark' ? '#0B0920' : '#FAF8FF');
+        }
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.documentElement.style.colorScheme = 'dark';
       }
     })();
   </script>
@@ -53,10 +63,10 @@
           <svg class="nav-mark-svg nav-mark-desktop" viewBox="92 48 348 208" width="60" height="36" fill="none" aria-hidden="true">
             <defs>
               <linearGradient id="navMarkGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop class="stop-1" offset="0%" stop-color="#FFFFFF"/>
-                <stop class="stop-2" offset="35%" stop-color="#F4ECFF"/>
-                <stop class="stop-3" offset="70%" stop-color="#D0B3FF"/>
-                <stop class="stop-4" offset="100%" stop-color="#A879FF"/>
+                <stop class="stop-1" offset="0%" stop-color="var(--logo-stop-1, #FFFFFF)"/>
+                <stop class="stop-2" offset="35%" stop-color="var(--logo-stop-2, #F4ECFF)"/>
+                <stop class="stop-3" offset="70%" stop-color="var(--logo-stop-3, #D0B3FF)"/>
+                <stop class="stop-4" offset="100%" stop-color="var(--logo-stop-4, #A879FF)"/>
               </linearGradient>
               <filter id="navStarGlow" x="-50%" y="-50%" width="200%" height="200%">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
@@ -81,10 +91,10 @@
           <svg class="nav-mark-svg nav-mark-mobile" viewBox="120 45 285 215" width="42" height="32" fill="none" aria-hidden="true">
             <defs>
               <linearGradient id="navMarkGradMobile" x1="0" y1="0" x2="1" y2="1">
-                <stop class="stop-1" offset="0%" stop-color="#FFFFFF"/>
-                <stop class="stop-2" offset="35%" stop-color="#F4ECFF"/>
-                <stop class="stop-3" offset="70%" stop-color="#D0B3FF"/>
-                <stop class="stop-4" offset="100%" stop-color="#A879FF"/>
+                <stop class="stop-1" offset="0%" stop-color="var(--logo-stop-1, #FFFFFF)"/>
+                <stop class="stop-2" offset="35%" stop-color="var(--logo-stop-2, #F4ECFF)"/>
+                <stop class="stop-3" offset="70%" stop-color="var(--logo-stop-3, #D0B3FF)"/>
+                <stop class="stop-4" offset="100%" stop-color="var(--logo-stop-4, #A879FF)"/>
               </linearGradient>
             </defs>
             <path class="kz-geom" d="M137 55 L182 55 L182 175 L137 220 Z" fill="url(#navMarkGradMobile)"/>

@@ -373,19 +373,50 @@
   /* ============================================================
      5. THEME TOGGLE WITH SMOOTH ICON STATE & TRANSITION
      ============================================================ */
+  function updateThemeColorMeta(theme) {
+    const metaTheme = document.getElementById('theme-color-meta') || document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+      metaTheme.setAttribute('content', theme === 'dark' ? '#0B0920' : '#FAF8FF');
+    }
+  }
+
   function initThemeToggle() {
     const toggleBtn = document.getElementById('theme-toggle');
     if (!toggleBtn) return;
 
     toggleBtn.addEventListener('click', () => {
       const currentTheme = document.documentElement.getAttribute('data-theme');
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
       const isDark = currentTheme === 'dark' || (!currentTheme && systemPrefersDark);
       const nextTheme = isDark ? 'light' : 'dark';
 
       document.documentElement.setAttribute('data-theme', nextTheme);
-      localStorage.setItem('theme', nextTheme);
+      document.documentElement.style.colorScheme = nextTheme;
+      updateThemeColorMeta(nextTheme);
+
+      try {
+        localStorage.setItem('theme', nextTheme);
+      } catch (e) {
+        /* storage may be restricted in some webviews */
+      }
     });
+
+    // Synchronize if system preference changes and user hasn't set an explicit preference
+    try {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      if (mediaQuery && mediaQuery.addEventListener) {
+        mediaQuery.addEventListener('change', (e) => {
+          try {
+            if (!localStorage.getItem('theme')) {
+              const newTheme = e.matches ? 'dark' : 'light';
+              document.documentElement.setAttribute('data-theme', newTheme);
+              document.documentElement.style.colorScheme = newTheme;
+              updateThemeColorMeta(newTheme);
+            }
+          } catch (err) {}
+        });
+      }
+    } catch (e) {}
   }
 
   /* ============================================================
