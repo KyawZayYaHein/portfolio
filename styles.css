@@ -300,7 +300,35 @@ html[data-theme="dark"] .nav-logo:hover .nav-mark-svg {
 }
 
 .hero-badge-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
   margin-bottom: var(--s-2);
+}
+
+.hero-brand-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  background: rgba(74, 68, 198, 0.08);
+  border: 1px solid rgba(74, 68, 198, 0.22);
+  color: var(--purple-700);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.45em 1.1em;
+  border-radius: var(--r-pill);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all var(--dur-norm) var(--ease-out-expo);
+}
+
+.hero-brand-tag .brand-sparkle {
+  color: var(--purple-500);
+  font-size: 0.9em;
+  line-height: 1;
 }
 
 .hero-badge {
@@ -1322,8 +1350,37 @@ body.is-loaded .hero-card-img {
   border-top: 1px solid rgba(74, 68, 198, 0.1);
   padding-block: var(--s-3);
   text-align: center;
+}
+
+.footer-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.footer-motto {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--purple-700);
+  letter-spacing: 0.02em;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+}
+
+.footer-sparkle {
+  color: var(--purple-500);
+  font-size: 0.85em;
+  line-height: 1;
+}
+
+.footer-copy {
   color: var(--ink-soft);
   font-size: var(--text-xs);
+  margin: 0;
 }
 
 /* ---------- Motion & Distinctive Scroll Reveal System ---------- */
@@ -1668,18 +1725,25 @@ body.is-loaded .hero-card-img {
     gap: 16px;
   }
   .hero-badge-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
     margin-bottom: 10px;
   }
-  .hero-badge {
+  .hero-brand-tag {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
+    gap: 6px;
     font-size: 0.70rem;
     font-weight: 700;
-    letter-spacing: 0.05em;
-    padding: 5px 12px;
+    letter-spacing: 0.06em;
+    padding: 5px 13px;
     border-radius: var(--r-pill);
     white-space: nowrap;
+  }
+  .hero-badge {
+    display: none !important;
   }
   .hero h1 {
     font-size: clamp(1.68rem, 6.8vw, 1.95rem);
@@ -1992,6 +2056,18 @@ html[data-theme="dark"] .theme-icon-moon { display: none; }
 html[data-theme="dark"] .hero::before { background: #3b2d71; opacity: 0.45; }
 html[data-theme="dark"] .hero::after { background: #1a3b5c; opacity: 0.4; }
 
+html[data-theme="dark"] .hero-brand-tag {
+  background: rgba(116, 71, 200, 0.22);
+  border-color: rgba(168, 121, 255, 0.4);
+  color: #DCC5FF;
+  box-shadow: 0 0 16px -4px rgba(168, 121, 255, 0.25);
+}
+
+html[data-theme="dark"] .hero-brand-tag .brand-sparkle {
+  color: #FFFFFF;
+  text-shadow: 0 0 8px rgba(168, 121, 255, 0.9);
+}
+
 html[data-theme="dark"] .hero-badge {
   background: rgba(26, 22, 48, 0.85);
   border-color: rgba(138, 131, 245, 0.28);
@@ -2128,6 +2204,15 @@ html[data-theme="dark"] .contact-details {
 }
 html[data-theme="dark"] .footer {
   border-top-color: rgba(138, 131, 245, 0.14);
+}
+
+html[data-theme="dark"] .footer-motto {
+  color: #DCC5FF;
+}
+
+html[data-theme="dark"] .footer-sparkle {
+  color: #A879FF;
+  text-shadow: 0 0 8px rgba(168, 121, 255, 0.8);
 }
 
 
@@ -2315,6 +2400,18 @@ html[data-theme="dark"] .metric-dist .metric-value {
   html:not([data-theme="light"]) .hero::before { background: #3b2d71; opacity: 0.45; }
   html:not([data-theme="light"]) .hero::after { background: #1a3b5c; opacity: 0.4; }
 
+  html:not([data-theme="light"]) .hero-brand-tag {
+    background: rgba(116, 71, 200, 0.22);
+    border-color: rgba(168, 121, 255, 0.4);
+    color: #DCC5FF;
+    box-shadow: 0 0 16px -4px rgba(168, 121, 255, 0.25);
+  }
+
+  html:not([data-theme="light"]) .hero-brand-tag .brand-sparkle {
+    color: #FFFFFF;
+    text-shadow: 0 0 8px rgba(168, 121, 255, 0.9);
+  }
+
   html:not([data-theme="light"]) .hero-badge {
     background: rgba(26, 22, 48, 0.85);
     border-color: rgba(138, 131, 245, 0.28);
@@ -2450,5 +2547,14 @@ html:not([data-theme="light"]) .process-step {
   }
   html:not([data-theme="light"]) .footer {
     border-top-color: rgba(138, 131, 245, 0.14);
+  }
+
+  html:not([data-theme="light"]) .footer-motto {
+    color: #DCC5FF;
+  }
+
+  html:not([data-theme="light"]) .footer-sparkle {
+    color: #A879FF;
+    text-shadow: 0 0 8px rgba(168, 121, 255, 0.8);
   }
 }
