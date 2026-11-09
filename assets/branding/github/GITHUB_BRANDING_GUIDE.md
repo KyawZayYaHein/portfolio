@@ -1,6 +1,6 @@
 # Kyaw Zay Ya Hein — GitHub Profile Branding & Setup Guide
 
-This guide details how to integrate your approved **KZYH Personal Brand** across your GitHub profile (`@SwordsoulOfLabrynth`), repository READMEs, and developer social touchpoints.
+This guide details how to integrate your approved **KZYH Personal Brand** across your GitHub profile (`@KyawZayYaHein`), repository READMEs, and developer social touchpoints.
 
 ---
 
@@ -42,18 +42,18 @@ This guide details how to integrate your approved **KZYH Personal Brand** across
 ### Banner Assets:
 1. **GitHub Profile README Banner (1280 × 320)**:
    - File: [`kzyh-github-banner-1280x320.png`](file:///D:/Portfolio%20CV%20Resume/github_branding/kzyh-github-banner-1280x320.png)
-   - Ideal aspect ratio (4:1) for embedding directly at the top of your GitHub Profile README repository (`SwordsoulOfLabrynth/SwordsoulOfLabrynth`).
+   - Ideal aspect ratio (4:1) for embedding directly at the top of your GitHub Profile README repository (`KyawZayYaHein/KyawZayYaHein`).
 2. **Standard Landscape Banner (1500 × 500)**:
    - File: [`kzyh-github-banner-1500x500.png`](file:///D:/Portfolio%20CV%20Resume/github_branding/kzyh-github-banner-1500x500.png)
    - Standard 3:1 banner format for Twitter/X, LinkedIn background, or GitHub Organization headers.
 
 ### Steps to Embed in Profile README:
-In your `SwordsoulOfLabrynth/README.md`, place this at the very top:
+In your `KyawZayYaHein/README.md`, place this at the very top:
 
 ```markdown
 <div align="center">
-  <a href="https://swordsouloflabrynth.github.io/portfolio/">
-    <img src="https://raw.githubusercontent.com/SwordsoulOfLabrynth/portfolio/main/assets/branding/github/kzyh-github-banner-1280x320.png" alt="Kyaw Zay Ya Hein — Product Builder & Software Engineer" width="100%" />
+  <a href="https://kyawzayyahein.github.io/portfolio/">
+    <img src="https://raw.githubusercontent.com/KyawZayYaHein/portfolio/main/assets/branding/github/kzyh-github-banner-1280x320.png" alt="Kyaw Zay Ya Hein — Product Builder & Software Engineer" width="100%" />
   </a>
 </div>
 ```
@@ -67,10 +67,10 @@ In your `SwordsoulOfLabrynth/README.md`, place this at the very top:
 - **Bio**:
   > Product Builder & Software Engineer | C# .NET · Flutter · Web Systems | MIIT CSE (Expected 2027) | Build Better. Dream Bigger.
 - **Location**: `Mandalay, Myanmar`
-- **Website**: `https://swordsouloflabrynth.github.io/portfolio/`
+- **Website**: `https://kyawzayyahein.github.io/portfolio/`
 - **Social Accounts**:
   - LinkedIn: `https://linkedin.com/in/kyaw-zay-ya-hein-00aba927b`
-  - Portfolio: `https://swordsouloflabrynth.github.io/portfolio/`
+  - Portfolio: `https://kyawzayyahein.github.io/portfolio/`
 
 ---
 

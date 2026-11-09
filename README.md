@@ -19,12 +19,12 @@ git init
 git add .
 git commit -m "Portfolio v1"
 git branch -M main
-git remote add origin https://github.com/SwordsoulOfLabrynth/portfolio.git
+git remote add origin https://github.com/KyawZayYaHein/portfolio.git
 git push -u origin main
 ```
 
 Then on GitHub: **Settings → Pages → Source: main branch, / (root)**.
-Site goes live at `https://swordsouloflabrynth.github.io/portfolio/`.
+Site goes live at `https://kyawzayyahein.github.io/portfolio/`.
 
 (Alternative: drag the folder into vercel.com or netlify.com for a nicer URL.)
 
