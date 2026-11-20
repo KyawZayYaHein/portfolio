@@ -319,18 +319,15 @@ body.is-loaded .hero-celestial-canvas {
 .celestial-sphere,
 .celestial-tech-line {
   opacity: 0;
-  transform-origin: center;
-  transform: scale(0.97);
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: 0.18s;
-  will-change: opacity, transform;
+  will-change: opacity;
 }
 
 body.is-loaded .celestial-orbit-macro,
 body.is-loaded .celestial-sphere,
 body.is-loaded .celestial-tech-line {
   opacity: 1;
-  transform: scale(1);
 }
 
 .celestial-orbit-macro,
@@ -346,19 +343,15 @@ body.is-loaded .celestial-tech-line {
   transition: stroke var(--dur-norm) var(--ease-out-expo);
 }
 
-/* Star Entrance: Organic Celestial Spring into View */
+/* Star Entrance: Fades in synchronized with Hero Entrance */
 .celestial-star {
-  transform-box: fill-box;
-  transform-origin: center;
   opacity: 0;
-  transform: scale(0);
-  transition: opacity 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1);
-  will-change: opacity, transform;
+  transition: opacity 0.85s ease-out;
+  will-change: opacity;
 }
 
 body.is-loaded .celestial-star {
   opacity: 1;
-  transform: scale(1);
 }
 
 body.is-loaded .star-1 { transition-delay: 0.22s; }
@@ -368,22 +361,20 @@ body.is-loaded .star-4 { transition-delay: 0.28s; }
 body.is-loaded .star-5 { transition-delay: 0.42s; }
 body.is-loaded .star-6 { transition-delay: 0.56s; }
 
-/* Continuous gentle shimmer: Stars ALWAYS stay visible (opacity >= 0.88), NEVER disappearing */
+/* Continuous gentle shimmer: Stars ALWAYS stay visible, NEVER disappearing */
 .celestial-star path {
   fill: var(--celestial-star-fill) !important;
   filter: drop-shadow(0 0 6px var(--celestial-glow));
   transition: fill var(--dur-norm) var(--ease-out-expo);
-  transform-box: fill-box;
-  transform-origin: center;
-  will-change: opacity, transform;
+  will-change: opacity;
 }
 
-.star-1 path { animation: celestialShimmer 4.8s cubic-bezier(0.4, 0, 0.2, 1) infinite 1.0s; }
-.star-2 path { animation: celestialShimmer 5.6s cubic-bezier(0.4, 0, 0.2, 1) infinite 1.4s; }
-.star-3 path { animation: celestialShimmer 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite 2.2s; }
-.star-4 path { animation: celestialShimmer 6.0s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.8s; }
-.star-5 path { animation: celestialShimmer 5.1s cubic-bezier(0.4, 0, 0.2, 1) infinite 2.8s; }
-.star-6 path { animation: celestialShimmer 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite 1.6s; }
+.star-1 path { animation: celestialShimmer 4.8s ease-in-out infinite 1.0s; }
+.star-2 path { animation: celestialShimmer 5.6s ease-in-out infinite 1.4s; }
+.star-3 path { animation: celestialShimmer 4.2s ease-in-out infinite 2.2s; }
+.star-4 path { animation: celestialShimmer 6.0s ease-in-out infinite 0.8s; }
+.star-5 path { animation: celestialShimmer 5.1s ease-in-out infinite 2.8s; }
+.star-6 path { animation: celestialShimmer 4.5s ease-in-out infinite 1.6s; }
 
 .celestial-star circle {
   fill: var(--celestial-star-core) !important;
@@ -392,12 +383,10 @@ body.is-loaded .star-6 { transition-delay: 0.56s; }
 
 @keyframes celestialShimmer {
   0%, 100% {
-    opacity: 0.88;
-    transform: scale(1);
+    opacity: 0.90;
   }
   50% {
     opacity: 1;
-    transform: scale(1.15);
   }
 }
 
