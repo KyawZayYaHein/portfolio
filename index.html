@@ -124,6 +124,83 @@
 
     <!-- Hero -->
     <section class="hero">
+      <!-- Ambient Celestial Elements (Inspired by KZYH Laptop Cosmic Skin) -->
+      <div class="hero-celestial-canvas" aria-hidden="true">
+        <svg class="celestial-svg-bg" viewBox="0 0 1440 680" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#DCC5FF" stop-opacity="0.45"/>
+              <stop offset="50%" stop-color="#7447C8" stop-opacity="0.22"/>
+              <stop offset="100%" stop-color="#A879FF" stop-opacity="0.08"/>
+            </linearGradient>
+            <linearGradient id="gridGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#A879FF" stop-opacity="0"/>
+              <stop offset="50%" stop-color="#A879FF" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#A879FF" stop-opacity="0"/>
+            </linearGradient>
+            <filter id="starGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+
+          <!-- 1. Ambient Celestial Coordinate Grid & Sphere (Bottom-Left) -->
+          <g class="celestial-sphere" transform="translate(60, 470)">
+            <circle cx="90" cy="90" r="85" stroke="url(#orbitGrad)" stroke-width="1.2" stroke-dasharray="4 4"/>
+            <ellipse cx="90" cy="90" rx="85" ry="38" transform="rotate(-20 90 90)" stroke="url(#orbitGrad)" stroke-width="1.2"/>
+            <ellipse cx="90" cy="90" rx="36" ry="85" transform="rotate(-20 90 90)" stroke="url(#orbitGrad)" stroke-width="1.2"/>
+            <line x1="5" y1="90" x2="175" y2="90" stroke="url(#gridGrad)" stroke-width="1.2"/>
+          </g>
+
+          <!-- 2. Sweeping Macro Orbit Curve (Background) -->
+          <ellipse class="celestial-orbit-macro" cx="880" cy="300" rx="480" ry="220" transform="rotate(-22 880 300)" stroke="url(#orbitGrad)" stroke-width="1.5"/>
+
+          <!-- 3. Tech Chamfer & Coordinate Lines -->
+          <path class="celestial-tech-line" d="M -40 220 L 140 220 L 190 270 L 190 380" stroke="url(#orbitGrad)" stroke-width="1.2"/>
+          <path class="celestial-tech-line" d="M 1250 80 L 1320 80 L 1360 120 L 1480 120" stroke="url(#orbitGrad)" stroke-width="1.2"/>
+
+          <!-- 4. Celestial 4-Point Stars (Handcrafted from KZYH Laptop Skin) -->
+          <!-- Star 1: Top-Left (Near Brand Badge) -->
+          <g class="celestial-star star-1" transform="translate(90, 85)">
+            <path d="M 0 -13 Q 0 0 13 0 Q 0 0 0 13 Q 0 0 -13 0 Q 0 0 0 -13 Z" fill="#FFFFFF" filter="url(#starGlow)"/>
+            <circle cx="0" cy="0" r="2.5" fill="#FFFFFF"/>
+          </g>
+
+          <!-- Star 2: Mid-Left (Near Headline) -->
+          <g class="celestial-star star-2" transform="translate(35, 340)">
+            <path d="M 0 -9 Q 0 0 9 0 Q 0 0 0 9 Q 0 0 -9 0 Q 0 0 0 -9 Z" fill="#FFFFFF" filter="url(#starGlow)"/>
+            <circle cx="0" cy="0" r="2" fill="#FFFFFF"/>
+          </g>
+
+          <!-- Star 3: Sphere Center Flare -->
+          <g class="celestial-star star-3" transform="translate(150, 560)">
+            <path d="M 0 -16 Q 0 0 16 0 Q 0 0 0 16 Q 0 0 -16 0 Q 0 0 0 -16 Z" fill="#FFFFFF" filter="url(#starGlow)"/>
+            <circle cx="0" cy="0" r="3" fill="#FFFFFF"/>
+          </g>
+
+          <!-- Star 4: Top-Right (Above Hero Portrait Card) -->
+          <g class="celestial-star star-4" transform="translate(1220, 65)">
+            <path d="M 0 -15 Q 0 0 15 0 Q 0 0 0 15 Q 0 0 -15 0 Q 0 0 0 -15 Z" fill="#FFFFFF" filter="url(#starGlow)"/>
+            <circle cx="0" cy="0" r="3" fill="#FFFFFF"/>
+          </g>
+
+          <!-- Star 5: Floating Mid-Right (Between text & visual) -->
+          <g class="celestial-star star-5" transform="translate(680, 160)">
+            <path d="M 0 -10 Q 0 0 10 0 Q 0 0 0 10 Q 0 0 -10 0 Q 0 0 0 -10 Z" fill="#FFFFFF" filter="url(#starGlow)"/>
+            <circle cx="0" cy="0" r="2" fill="#FFFFFF"/>
+          </g>
+
+          <!-- Star 6: Bottom-Right (Near Card Base) -->
+          <g class="celestial-star star-6" transform="translate(1330, 480)">
+            <path d="M 0 -11 Q 0 0 11 0 Q 0 0 0 11 Q 0 0 -11 0 Q 0 0 0 -11 Z" fill="#FFFFFF" filter="url(#starGlow)"/>
+            <circle cx="0" cy="0" r="2.2" fill="#FFFFFF"/>
+          </g>
+        </svg>
+      </div>
+
       <div class="wrap hero-grid">
         <div class="hero-content">
           <div class="hero-badge-wrap">
