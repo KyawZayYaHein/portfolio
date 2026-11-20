@@ -73,7 +73,7 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
 }
 
@@ -84,7 +84,7 @@ body {
   line-height: 1.65;
   color: var(--ink);
   background: var(--cloud);
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
 }
 
